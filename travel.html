@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer Shibaji - Travel</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --------------------------------- */
+        /* --- Global Styles & Variables --- */
+        /* --------------------------------- */
+        :root {
+            --color-beige: #f8f4e3;
+            --color-green: #2f4f4f;
+            --color-terracotta: #d26a44;
+            --color-white: #ffffff;
+            --color-dark-text: #333333;
+            
+            --font-heading: 'Tiro Bangla', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-beige);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-green); }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; }
+        section { padding: 60px 0; }
+        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s ease; }
+        a:hover { color: var(--color-green); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background-color: var(--color-terracotta); color: var(--color-white); }
+        .btn-primary:hover { background-color: #b85b3a; color: var(--color-white); transform: translateY(-2px); }
+
+        /* --------------------------------- */
+        /* --- 1.1 Navigation Bar --- */
+        /* --------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo-link {
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            line-height: 0;
+        }
+        .navbar .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar .menu { list-style: none; display: flex; }
+        .navbar .menu li { margin-left: 30px; }
+        .navbar .menu a { color: var(--color-dark-text); font-weight: 500; font-size: 1rem; }
+        .navbar .menu a:hover, .navbar .menu a.active { color: var(--color-terracotta); }
+
+        /* --- CART ICON --- */
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-dark-text);
+            text-decoration: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--color-terracotta);
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 4px 6px;
+            border-radius: 50%;
+            font-family: var(--font-body);
+            display: none;
+        }
+        .cart-count.visible { display: block; }
+        
+        /* --------------------------------- */
+        /* --- 4.1. Introduction --- */
+        /* --------------------------------- */
+        .travel-intro {
+            color: var(--color-red);
+            text-align: center;
+            padding: 120px 20px; /* Increased padding */
+            /* UPDATED: Background image */
+            background: linear-gradient(rgba(47, 79, 79, 0.5), rgba(47, 79, 79, 0.5)), url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .travel-intro h1 {
+            color: var(--color-white);
+            font-size: 2.5rem; /* Adjusted size */
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* Added shadow */
+        }
+
+        /* --------------------------------- */
+        /* --- 4.2. Travel Blogs --- */
+        /* --------------------------------- */
+        .blog-section { background-color: var(--color-white); }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .blog-card { background: var(--color-white); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .blog-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .blog-card img { width: 100%; height: 220px; object-fit: cover; }
+        .blog-card-content { padding: 25px; }
+        .blog-card h3 { font-size: 1.6rem; margin-bottom: 10px; }
+        .blog-card p { font-size: 1rem; margin-bottom: 20px; }
+        .blog-card .read-more { font-weight: 700; }
+        
+        /* --------------------------------- */
+        /* --- 4.3. Photo Gallery --- */
+        /* --------------------------------- */
+        .photo-gallery { padding-bottom: 30px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 250px; gap: 15px; }
+        .gallery-item { overflow: hidden; border-radius: 10px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease; }
+        .gallery-item img:hover { transform: scale(1.1); filter: brightness(1.1); }
+        .gallery-item.span-2-col { grid-column: span 2; }
+        .gallery-item.span-2-row { grid-row: span 2; }
+
+        /* --------------------------------- */
+        /* --- 4.4. Video Stories --- */
+        /* --------------------------------- */
+        .video-stories { background-color: var(--color-white); }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* --------------------------------- */
+        /* --- 1.8 Footer (Copied) --- */
+        /* --------------------------------- */
+        footer { background-color: var(--color-green); color: var(--color-beige); padding: 60px 0 30px; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .footer-column h4 { color: var(--color-white); font-size: 1.3rem; margin-bottom: 20px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a, .footer-column p { color: var(--color-beige); opacity: 0.8; }
+        .footer-column a:hover { opacity: 1; color: var(--color-white); }
+        .social-icons { display: flex; }
+        .social-icons a { font-size: 1.5rem; margin-right: 20px; }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.2); opacity: 0.7; }
+        
+        /* --------------------------------- */
+        /* --- Responsive --- */
+        /* --------------------------------- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 15px; }
+            .navbar .logo-link { margin-bottom: 15px; }
+            .navbar .menu { margin-top: 0; flex-wrap: wrap; justify-content: center; }
+            .navbar .menu li { margin: 5px 10px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+            .gallery-item.span-2-col, .gallery-item.span-2-row { grid-column: auto; grid-row: auto; }
+            .footer-container { text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+        @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="1.png" alt="Explorer Shibaji Logo" class="logo-img">
+        </a>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="travel.html" class="active">Travel</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <a href="checkout.html" class="cart-icon">
+            🛒
+            <span class="cart-count"></span>
+        </a>
+    </header>
+
+    <main>
+        <section class="travel-intro">
+            <div class="container">
+                <h1>“Every journey inspires a design. Here’s how the stories unfold.”</h1>
+            </div>
+        </section>
+
+        <section class="blog-section">
+            <div class="container">
+                <h2>Travel Blogs</h2>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <img src="https://images.pexels.com/photos/1761279/pexels-photo-1761279.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Meghalaya">
+                        <div class="blog-card-content">
+                            <h3>Wanderlust in Meghalaya</h3>
+                            <p>Where clouds meet silence. A visual diary from the living root bridges to the serene lakes of the east.</p>
+                            <a href="#" class="read-more">Read Story →</a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="https://images.pexels.com/photos/15275546/pexels-photo-15275546.jpeg">
+                        <div class="blog-card-content">
+                            <h3>Bhutan Diaries: Peace Beyond Borders</h3>
+                            <p>Exploring the land of the thunder dragon, from the markets of Thimphu to the majestic Tiger's Nest.</p>
+                            <a href="#" class="read-more">Read Story →</a>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <img src="https://images.pexels.com/photos/8180772/pexels-photo-8180772.jpeg" alt="Sikkim">
+                        <div class="blog-card-content">
+                            <h3>Sikkim: The Himalayan Jewel</h3>
+                            <p>Chasing sunrises over Kanchenjunga and finding stories in the quiet monasteries of Pelling.</p>
+                            <a href="#" class="read-more">Read Story →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="photo-gallery">
+            <div class="container">
+                <h2>Photo Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item span-2-col"><img src="https://images.pexels.com/photos/1933239/pexels-photo-1933239.jpeg" alt="Gallery Image 1"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg" alt="Gallery Image 2"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gallery Image 3"></div>
+                    <div class="gallery-item span-2-col"><img src="https://images.pexels.com/photos/679492/pexels-photo-679492.jpeg" alt="Gallery Image 4"></div>
+                    <div class="gallery-item span-2-col"><img src="https://images.pexels.com/photos/210012/pexels-photo-210012.jpeg" alt="Gallery Image 5"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/29445121/pexels-photo-29445121.jpeg" alt="Gallery Image 4"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-stories">
+            <div class="container">
+                <h2>Video Stories</h2>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/n-1rAqhCPvU" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="travel.html">Travel</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p>Email: explorershibaji@gmail.com</p>
+                    <p>Kolkata, West Bengal</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#">Insta</a>
+                        <a href="#">YT</a>
+                        <a href="#">FB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © Explorer Shibaji 2025. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCartCountDisplay() {
+            const cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+            const cartCountElement = document.querySelector('.cart-count');
+            
+            if (cartCountElement) {
+                if (cart.length > 0) {
+                    cartCountElement.innerText = cart.length;
+                    cartCountElement.classList.add('visible');
+                } else {
+                    cartCountElement.innerText = '';
+                    cartCountElement.classList.remove('visible');
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCountDisplay);
+    </script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer Shibaji - Shop</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --------------------------------- */
+        /* --- Global Styles & Variables --- */
+        /* --------------------------------- */
+        :root {
+            --color-beige: #f8f4e3;
+            --color-green: #2f4f4f;
+            --color-terracotta: #d26a44;
+            --color-white: #ffffff;
+            --color-dark-text: #333333;
+            
+            --font-heading: 'Tiro Bangla', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-beige);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-green); }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; }
+        section { padding: 60px 0; }
+        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s ease; }
+        a:hover { color: var(--color-green); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background-color: var(--color-terracotta); color: var(--color-white); }
+        .btn-primary:hover { background-color: #b85b3a; color: var(--color-white); transform: translateY(-2px); }
+
+        /* --------------------------------- */
+        /* --- 1.1 Navigation Bar --- */
+        /* --------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar .logo-link {
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            line-height: 0;
+        }
+        .navbar .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar .menu { list-style: none; display: flex; }
+        .navbar .menu li { margin-left: 30px; }
+        .navbar .menu a { color: var(--color-dark-text); font-weight: 500; font-size: 1rem; }
+        .navbar .menu a:hover, .navbar .menu a.active { color: var(--color-terracotta); }
+
+        /* --- CART ICON --- */
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-dark-text);
+            text-decoration: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--color-terracotta);
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 4px 6px;
+            border-radius: 50%;
+            font-family: var(--font-body);
+            display: none;
+        }
+        .cart-count.visible { display: block; }
+
+        /* --------------------------------- */
+        /* --- 2.3. Featured Banner --- */
+        /* --------------------------------- */
+        .featured-banner { background-color: var(--color-green); color: var(--color-white); text-align: center; padding: 40px 20px; }
+        .featured-banner h2 { color: var(--color-white); margin-bottom: 20px; font-size: 2rem; }
+
+        /* --------------------------------- */
+        /* --- 2.1. Category Filters --- */
+        /* --------------------------------- */
+        .shop-filters { padding: 40px 0 0; background-color: var(--color-beige); }
+        .filter-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 40px; }
+        .filter-buttons .btn { background-color: var(--color-white); color: var(--color-dark-text); border: 2px solid var(--color-green); font-weight: 500; }
+        .filter-buttons .btn.active, .filter-buttons .btn:hover { background-color: var(--color-green); color: var(--color-white); }
+
+        /* --------------------------------- */
+        /* --- 2.2. Product Grid --- */
+        /* --------------------------------- */
+        .product-grid-section { padding-top: 0; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: var(--color-white); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        
+        .product-card.hide { display: none; }
+        
+        .product-image-container { position: relative; cursor: pointer; }
+        .product-card img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        
+        .quick-view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(47, 79, 79, 0.75);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .product-card:hover .quick-view { opacity: 1; }
+        .product-card-content { padding: 25px; }
+        .product-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .product-card .price { font-size: 1.2rem; font-weight: 700; color: var(--color-terracotta); margin-bottom: 20px; }
+
+        /* --------------------------------- */
+        /* --- Quick View Modal --- */
+        /* --------------------------------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--color-white);
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            padding: 40px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: var(--color-dark-text);
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .modal-details h2 {
+            text-align: left;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .modal-details .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-terracotta);
+            margin-bottom: 20px;
+        }
+        
+        .modal-details p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        
+        .modal-details .btn {
+            width: 100%;
+        }
+
+        /* --------------------------------- */
+        /* --- 1.8 Footer (Copied) --- */
+        /* --------------------------------- */
+        footer { background-color: var(--color-green); color: var(--color-beige); padding: 60px 0 30px; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .footer-column h4 { font-family: var(--font-heading); color: var(--color-white); font-size: 1.3rem; margin-bottom: 20px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a, .footer-column p { color: var(--color-beige); opacity: 0.8; }
+        .footer-column a:hover { opacity: 1; color: var(--color-white); }
+        .social-icons { display: flex; }
+        .social-icons a { font-size: 1.5rem; margin-right: 20px; }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-beige); opacity: 0.7; }
+        
+        /* --------------------------------- */
+        /* --- Responsive (Copied) --- */
+        /* --------------------------------- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 15px; }
+            .navbar .logo-link { margin-bottom: 15px; }
+            .navbar .menu { margin-top: 0; flex-wrap: wrap; justify-content: center; }
+            .navbar .menu li { margin: 5px 10px; }
+            .footer-container { text-align: center; }
+            .social-icons { justify-content: center; }
+            
+            .modal-content {
+                padding: 30px;
+                width: 95%;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            .modal-body img {
+                height: 300px;
+            }
+            .modal-details h2 {
+                font-size: 1.8rem;
+            }
+            .modal-details .price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="1.png" alt="Explorer Shibaji Logo" class="logo-img">
+        </a>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <a href="checkout.html" class="cart-icon">
+            🛒
+            <span class="cart-count"></span>
+        </a>
+    </header>
+
+    <main>
+        <section class="featured-banner">
+            <div class="container">
+                <h2>Limited Edition Drop — Travel Calendar 2025</h2>
+                <button class="btn btn-primary add-to-cart-btn"
+                        data-product-name="Himalayan Trails Calendar 2025"
+                        data-product-price="499"
+                        data-product-image="Gemini_Generated_Image_hy4p38hy4p38hy4p.png">
+                    Shop The Calendar
+                </button>
+            </div>
+        </section>
+
+        <section class="shop-filters">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="btn active" data-filter="all">All</button>
+                    <button class="btn" data-filter="tshirts">T-Shirts</button>
+                    <button class="btn" data-filter="calendars">Calendars</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-grid-section">
+            <div class="container">
+                <div class="product-grid">
+                    
+                    <div class="product-card" data-category="tshirts">
+                        <div class="product-image-container">
+                            <img src="Green.jpg" alt="Wanderlust Tee in Forest Green">
+                            <div class="quick-view quick-view-trigger">Quick View</div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Wanderlust Tee (Forest Green)</h3>
+                            <div class="price">₹799</div>
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-product-name="Wanderlust Tee (Forest Green)" 
+                                    data-product-price="799"
+                                    data-product-image="Green.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-category="calendars">
+                        <div class="product-image-container">
+                            <img src="Gemini_Generated_Image_hy4p38hy4p38hy4p.png" alt="Himalayan Trails Calendar 2025">
+                            <div class="quick-view quick-view-trigger">Quick View</div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Himalayan Trails Calendar 2025</h3>
+                            <div class="price">₹499</div>
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-product-name="Himalayan Trails Calendar 2025" 
+                                    data-product-price="499"
+                                    data-product-image="Gemini_Generated_Image_hy4p38hy4p38hy4p.png">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="tshirts">
+                        <div class="product-image-container">
+                            <img src="Black.jpg" alt="Wanderlust Tee in Black">
+                            <div class="quick-view quick-view-trigger">Quick View</div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Wanderlust Tee (Black)</h3>
+                            <div class="price">₹349</div>
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-product-name="Wanderlust Tee (Black)" 
+                                    data-product-price="349"
+                                    data-product-image="Black.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-category="tshirts">
+                        <div class="product-image-container">
+                            <img src="Blue.jpg" alt="Wanderlust Tee in Navy Blue">
+                            <div class="quick-view quick-view-trigger">Quick View</div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Wanderlust Tee (Navy Blue)</h3>
+                            <div class="price">₹799</div>
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-product-name="Wanderlust Tee (Navy Blue)" 
+                                    data-product-price="799"
+                                    data-product-image="Blue.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="tshirts">
+                        <div class="product-image-container">
+                            <img src="Orange.jpg" alt="Wanderlust Tee in Orange">
+                            <div class="quick-view quick-view-trigger">Quick View</div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Wanderlust Tee (Orange)</h3>
+                            <div class="price">₹199</div>
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-product-name="Wanderlust Tee (Orange)" 
+                                    data-product-price="199"
+                                    data-product-image="Orange.jpg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="calendars">
+                        <div class="product-image-container">
+                            <img src="Gemini_Generated_Image_tlp7dltlp7dltlp7.png" alt="Himalayan Trails Calendar 2025 (Desk View)">
+                            <div class="quick-view quick-view-trigger">Quick View</div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Himalayan Trails Calendar 2025</h3>
+                            <div class="price">₹599</div>
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-product-name="Himalayan Trails Calendar 2025 (Desk View)" 
+                                    data-product-price="599"
+                                    data-product-image="Gemini_Generated_Image_tlp7dltlp7dltlp7.png">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay" id="quick-view-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <div class="modal-body">
+                <img src="" alt="Product Image" id="modal-img">
+                <div class="modal-details">
+                    <h2 id="modal-title">Product Title</h2>
+                    <div class="price" id="modal-price">₹000</div>
+                    <p id="modal-desc">This is a beautiful product inspired by the travels of Explorer Shibaji. High-quality material, perfect for your next adventure.</p>
+                    
+                    <button class="btn btn-primary" id="modal-add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="travel.html">Travel</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p>Email: explorershibaji@gmail.com</p>
+                    <p>Kolkata, West Bengal</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#">Insta</a>
+                        <a href="#">YT</a>
+                        <a href="#">FB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © Explorer Shibaji 2025. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCartCountDisplay() {
+            const cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+            const cartCountElement = document.querySelector('.cart-count');
+            
+            if (cartCountElement) {
+                if (cart.length > 0) {
+                    cartCountElement.innerText = cart.length;
+                    cartCountElement.classList.add('visible');
+                } else {
+                    cartCountElement.innerText = '';
+                    cartCountElement.classList.remove('visible');
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCountDisplay);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. ADD TO CART LOGIC (Card Buttons) ---
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const product = {
+                        name: event.target.dataset.productName,
+                        price: event.target.dataset.productPrice,
+                        image: event.target.dataset.productImage
+                    };
+
+                    let cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+                    cart.push(product);
+                    localStorage.setItem('explorerShibajiCart', JSON.stringify(cart));
+                    
+                    updateCartCountDisplay();
+                    
+                    alert('"' + product.name + '" has been added to your cart!');
+                });
+            });
+
+            // --- 2. FILTERING LOGIC ---
+            const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+            const productCards = document.querySelectorAll('.product-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const filter = event.target.dataset.filter;
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    event.target.classList.add('active');
+
+                    productCards.forEach(card => {
+                        const category = card.dataset.category;
+                        if (filter === 'all' || filter === category) {
+                            card.classList.remove('hide');
+                        } else {
+                            card.classList.add('hide');
+                        }
+                    });
+                });
+            });
+            
+            // --- 3. QUICK VIEW MODAL LOGIC ---
+            const modalOverlay = document.getElementById('quick-view-modal');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const quickViewTriggers = document.querySelectorAll('.quick-view-trigger');
+
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPrice = document.getElementById('modal-price');
+            const modalAddToCartBtn = document.getElementById('modal-add-to-cart-btn');
+
+            quickViewTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (event) => {
+                    const card = event.target.closest('.product-card');
+                    const title = card.querySelector('h3').innerText;
+                    const price = card.querySelector('.price').innerText;
+                    const imgSrc = card.querySelector('img').src;
+                    const cartBtn = card.querySelector('.add-to-cart-btn');
+                    const productData = cartBtn.dataset;
+
+                    modalImg.src = imgSrc;
+                    modalTitle.innerText = title;
+                    modalPrice.innerText = price;
+                    
+                    modalAddToCartBtn.dataset.productName = productData.productName;
+                    modalAddToCartBtn.dataset.productPrice = productData.productPrice;
+                    modalAddToCartBtn.dataset.productImage = productData.productImage;
+                    
+                    modalOverlay.classList.add('visible');
+                });
+            });
+
+            function closeModal() {
+                modalOverlay.classList.remove('visible');
+            }
+
+            modalCloseBtn.addEventListener('click', closeModal);
+
+            modalOverlay.addEventListener('click', (event) => {
+                if (event.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            modalAddToCartBtn.addEventListener('click', (event) => {
+                const product = {
+                    name: event.target.dataset.productName,
+                    price: event.target.dataset.productPrice,
+                    image: event.target.dataset.productImage
+                };
+
+                let cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+                cart.push(product);
+                localStorage.setItem('explorerShibajiCart', JSON.stringify(cart));
+                
+                updateCartCountDisplay();
+                alert('"' + product.name + '" has been added to your cart!');
+                closeModal();
+            });
+
+        });
+    </script>
+</body>
+</html>

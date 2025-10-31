@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer Shibaji - Login/Signup</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --------------------------------- */
+        /* --- Global Styles & Variables --- */
+        /* --------------------------------- */
+        :root {
+            --color-beige: #f8f4e3;
+            --color-green: #2f4f4f;
+            --color-terracotta: #d26a44;
+            --color-white: #ffffff;
+            --color-dark-text: #333333;
+            
+            --font-heading: 'Tiro Bangla', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-green);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+            
+            /* --- 7. Background --- */
+            background: url(https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--color-terracotta);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background-color: #b85b3a;
+            color: var(--color-white);
+        }
+        
+        /* --------------------------------- */
+        /* --- 7. Login/Signup Container --- */
+        /* --------------------------------- */
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.95); /* White with slight transparency */
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            
+            /* --- Backdrop Filter for blurred bg effect --- */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* --- Form Wrapper --- */
+        .auth-form-wrapper {
+            padding: 40px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-header .logo {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-green);
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none; /* Add a link to home */
+        }
+
+        .auth-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .auth-header p {
+            font-size: 1rem;
+            color: var(--color-dark-text);
+        }
+
+        /* --- 7.1 & 7.2 Forms --- */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        
+        .btn-full {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 15px;
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- 7.3 Social Login --- */
+        .social-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #888;
+            margin: 25px 0;
+        }
+        
+        .social-divider::before,
+        .social-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .social-divider:not(:empty)::before {
+            margin-right: .25em;
+        }
+        
+        .social-divider:not(:empty)::after {
+            margin-left: .25em;
+        }
+        
+        .btn-social {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid #ccc;
+            background: var(--color-white);
+            color: var(--color-dark-text);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-social:hover {
+            background: #f4f4f4;
+        }
+        
+        .btn-social img {
+            width: 20px;
+            margin-right: 12px;
+        }
+
+        /* --- Toggle --- */
+        .auth-toggle-text {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .auth-toggle-text a {
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        /* --- JS Functionality --- */
+        /* Hide signup form by default */
+        #signup-form {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <main class="auth-container">
+        
+        <div class="auth-form-wrapper" id="login-form">
+            <div class="auth-header">
+                <a href="index.html" class="logo">Explorer Shibaji</a>
+                <h2>Welcome Back</h2>
+                <p>Login to your account.</p>
+            </div>
+            
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <input type="email" id="login-email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="login-password" name="password" placeholder="Password" required>
+                </div>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+                <button type="submit" class="btn btn-primary btn-full">Login</button>
+            </form>
+            
+            <div class="social-divider">or</div>
+            
+            <button class="btn-social">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Continue with Google
+            </button>
+            
+            <div class="auth-toggle-text">
+                Don't have an account? <a id="show-signup">Sign Up</a>
+            </div>
+        </div>
+        
+        <div class="auth-form-wrapper" id="signup-form">
+            <div class="auth-header">
+                <a href="index.html" class="logo">Explorer Shibaji</a>
+                <h2>Create Account</h2>
+                <p>Join the Explorer family!</p>
+            </div>
+            
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <input type="text" id="signup-name" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signup-email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signup-password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+            </form>
+            
+            <div class="social-divider">or</div>
+            
+            <button class="btn-social">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Continue with Google
+            </button>
+            
+            <div class="auth-toggle-text">
+                Already have an account? <a id="show-login">Login</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- Simple toggle script ---
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const showSignupBtn = document.getElementById('show-signup');
+        const showLoginBtn = document.getElementById('show-login');
+
+        showSignupBtn.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+        });
+
+        showLoginBtn.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            signupForm.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer Shibaji - Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --------------------------------- */
+        /* --- Global Styles & Variables --- */
+        /* --------------------------------- */
+        :root {
+            --color-beige: #f8f4e3;
+            --color-green: #2f4f4f;
+            --color-terracotta: #d26a44;
+            --color-white: #ffffff;
+            --color-dark-text: #333333;
+            
+            --font-heading: 'Tiro Bangla', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-beige);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-green); }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; }
+        section { padding: 60px 0; }
+        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s ease; }
+        a:hover { color: var(--color-green); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { background-color: var(--color-terracotta); color: var(--color-white); }
+        .btn-primary:hover { background-color: #b85b3a; color: var(--color-white); transform: translateY(-2px); }
+        .btn-secondary { background-color: transparent; color: var(--color-white); border: 2px solid var(--color-white); }
+        .btn-secondary:hover { background-color: var(--color-white); color: var(--color-green); }
+
+        /* --------------------------------- */
+        /* --- 1.1 Navigation Bar --- */
+        /* --------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: rgb(1, 232, 240);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo-link {
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            line-height: 0;
+        }
+        .navbar .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar .menu { list-style: none; display: flex; }
+        .navbar .menu li { margin-left: 30px; }
+        .navbar .menu a { color: var(--color-dark-text); font-weight: 500; font-size: 1rem; }
+        .navbar .menu a:hover, .navbar .menu a.active { color: var(--color-terracotta); }
+
+        /* --- CART ICON --- */
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-dark-text);
+            text-decoration: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--color-terracotta);
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 4px 6px;
+            border-radius: 50%;
+            font-family: var(--font-body);
+            display: none;
+        }
+        .cart-count.visible { display: block; }
+
+        /* --------------------------------- */
+        /* --- 1.2 Hero Section --- */
+        /* --------------------------------- */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            color: var(--color-white);
+            text-align: center;
+            background: linear-gradient(rgba(47, 79, 79, 0.6), rgba(47, 79, 79, 0.6)), url(https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg);
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+.hero h1 { 
+    font-family: var(--font-heading); 
+    font-size: 3.5rem; 
+    color: #ff0303; /* <-- This line was changed */
+    margin-bottom: 30px; 
+}
+.hero .cta-buttons .btn { 
+    margin: 0 10px; 
+}
+
+        /* --------------------------------- */
+        /* --- 1.3 Featured Merchandise --- */
+        /* --------------------------------- */
+        .featured-merchandise { background-color: var(--color-white); }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-card { background: var(--color-white); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; height: 300px; object-fit: cover; }
+        .product-card-content { padding: 25px; }
+        .product-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .product-card .price { font-size: 1.2rem; font-weight: 700; color: var(--color-terracotta); margin-bottom: 20px; }
+
+        /* --------------------------------- */
+        /* --- 1.4 The Explorer's Story --- */
+        /* --------------------------------- */
+        .about-intro { background-color: var(--color-beige); }
+        .about-intro-content { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
+        .about-intro-content img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .about-intro-text h2 { text-align: left; margin-bottom: 20px; }
+        .about-intro-text p { font-size: 1.1rem; margin-bottom: 30px; }
+
+        /* --------------------------------- */
+        /* --- 1.5 Travel Moments Gallery --- */
+        /* --------------------------------- */
+        .gallery { background-color: var(--color-white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 250px); gap: 15px; }
+        .gallery-item { overflow: hidden; border-radius: 10px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .gallery-item img:hover { transform: scale(1.1); }
+        .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+        .gallery-item:nth-child(4) { grid-row: 2 / 3; grid-column: 2 / 4; }
+
+        /* --------------------------------- */
+        /* --- 1.6 Testimonials --- */
+        /* --------------------------------- */
+        .testimonial-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .testimonial-card { background: var(--color-white); padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.07); }
+        .testimonial-card img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid var(--color-terracotta); }
+        .testimonial-card p { font-style: italic; margin-bottom: 20px; }
+        .testimonial-card .name { font-weight: 700; color: var(--color-green); }
+
+        /* --------------------------------- */
+        /* --- 1.7 Newsletter Signup --- */
+        /* --------------------------------- */
+        .newsletter { background-color: var(--color-terracotta); color: var(--color-white); text-align: center; }
+        .newsletter h2 { color: var(--color-white); }
+        .newsletter p { font-size: 1.1rem; margin-bottom: 30px; }
+        .newsletter-form { display: flex; justify-content: center; max-width: 600px; margin: 0 auto; }
+        .newsletter-form input[type="email"] { flex-grow: 1; padding: 15px; border: none; border-radius: 50px 0 0 50px; font-family: var(--font-body); font-size: 1rem; }
+        .newsletter-form button { padding: 15px 30px; border: none; background: var(--color-green); color: var(--color-white); font-family: var(--font-body); font-weight: 500; font-size: 1rem; cursor: pointer; border-radius: 0 50px 50px 0; transition: background 0.3s ease; }
+        .newsletter-form button:hover { background: #1a3a3a; }
+
+        /* --------------------------------- */
+        /* --- 1.8 Footer --- */
+        /* --------------------------------- */
+        footer { background-color: var(--color-green); color: var(--color-beige); padding: 60px 0 30px; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .footer-column h4 { font-family: var(--font-heading); color: var(--color-white); font-size: 1.3rem; margin-bottom: 20px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a, .footer-column p { color: var(--color-beige); opacity: 0.8; }
+        .footer-column a:hover { opacity: 1; color: var(--color-white); }
+        .social-icons { display: flex; }
+        .social-icons a { font-size: 1.5rem; margin-right: 20px; }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-beige); opacity: 0.7; }
+        
+        /* --------------------------------- */
+        /* --- Responsive --- */
+        /* --------------------------------- */
+        @media (max-width: 992px) {
+            .about-intro-content { grid-template-columns: 1fr; }
+            .about-intro-content img { max-width: 500px; margin: 0 auto; display: block; }
+            .about-intro-text { text-align: center; }
+            .about-intro-text h2 { text-align: center; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: auto; grid-row: auto; }
+        }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 15px; }
+            .navbar .logo-link { margin-bottom: 15px; } /* Mobile spacing for logo */
+            .navbar .menu { flex-wrap: wrap; justify-content: center; }
+            .navbar .menu li { margin: 5px 10px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .cta-buttons { display: flex; flex-direction: column; }
+            .hero .cta-buttons .btn { margin: 10px 0; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .footer-container { text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        
+        <a href="index.html" class="logo-link">
+            <img src="1.png" alt="Explorer Shibaji Logo" class="logo-img">
+        </a>
+        
+        <ul class="menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <a href="checkout.html" class="cart-icon">
+            🛒
+            <span class="cart-count"></span>
+        </a>
+    </header>
+
+    <main>
+
+        <section class="hero" id="home">
+            <h1>ভ্রমণ মানে অনুভবের গল্প — Explorer Shibaji</h1>
+            <div class="cta-buttons">
+                <a href="shop.html" class="btn btn-primary">Shop Now</a>
+                <a href="travel.html" class="btn btn-secondary">Explore Journeys</a>
+            </div>
+        </section>
+
+        <section class="featured-merchandise" id="shop">
+            <div class="container">
+                <h2>Featured Merchandise</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="Green.jpg" alt="Explorer T-Shirt">
+                        <div class="product-card-content">
+                            <h3>Wanderlust Tee (Forest Green)</h3>
+                            <div class="price">₹799</div>
+                            <a href="shop.html" class="btn btn-primary">View Product</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Gemini_Generated_Image_hy4p38hy4p38hy4p.png" alt="Travel Calendar 2025">
+                        <div class="product-card-content">
+                            <h3>Himalayan Trails Calendar 2025</h3>
+                            <div class="price">₹499</div>
+                            <a href="shop.html" class="btn btn-primary">View Product</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="Black.jpg" alt="Black T-Shirt">
+                        <div class="product-card-content">
+                            <h3>Wanderlust Tee (Black)</h3>
+                            <div class="price">₹349</div>
+                            <a href="shop.html" class="btn btn-primary">View Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-intro" id="about-intro">
+            <div class="container">
+                <div class="about-intro-content">
+                    <img src="WhatsApp Image 2025-10-28 at 23.00.09_38fa123a.jpg" alt="Explorer Shibaji on a trail">
+                    <div class="about-intro-text">
+                        <h2>The Explorer's Story</h2>
+                        <p>From Bengal’s hills to Himalayan trails — Shibaji’s lens captures stories that you can wear. We believe travel isn't just about places, it's about the feeling. And we've bottled that feeling into every product.</p>
+                        <a href="about.html" class="btn btn-primary">Know More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery" id="gallery">
+            <div class="container">
+                <h2>Snapshots from the Road</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/2131856/pexels-photo-2131856.jpeg" alt="Forest trail"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mountain sunset"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/632522/pexels-photo-632522.jpeg" alt="Aurora"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/210012/pexels-photo-210012.jpeg" alt="Mountain lake"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg" alt="Camper van"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/2082103/pexels-photo-2082103.jpeg" alt="Camper van"></div>
+                    <div class="gallery-item"><img src="https://images.pexels.com/photos/87737/pexels-photo-87737.jpeg" alt="Camper van"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>What Our Community Says</h2>
+                <div class="testimonial-container">
+                    <div class="testimonial-card">
+                        <img src="minimal-profile-account-symbol-user-interface-theme-3d-icon-rendering-illustration-isolated-in-transparent-background-png.png" alt="User 1">
+                        <p>"Wore the Explorer tee to Sandakphu — felt the vibe! The quality is amazing and the design is pure love."</p>
+                        <div class="name">- Rohan Das</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="minimal-profile-account-symbol-user-interface-theme-3d-icon-rendering-illustration-isolated-in-transparent-background-png.png" alt="User 2">
+                        <p>"The calendar is on my desk. Every month, a new photo inspires me to plan my next trip. Brilliant concept!"</p>
+                        <div class="name">- Priya Sharma</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="minimal-profile-account-symbol-user-interface-theme-3d-icon-rendering-illustration-isolated-in-transparent-background-png.png" alt="User 3">
+                        <p>"Finally, a Bengali travel brand that feels authentic. I bought the mug and it's my new travel partner."</p>
+                        <div class="name">- Sayan Ghosh</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h2>Get Travel Tales & New Drops</h2>
+                <p>Join the Explorer family. Get travel stories & exclusive access to new merchandise drops right in your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="travel.html">Travel</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p>Email: explorershibaji@gmail.com</p>
+                    <p>Kolkata, West Bengal</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#">Insta</a>
+                        <a href="#">YT</a>
+                        <a href="#">FB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © Explorer Shibaji 2025. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCartCountDisplay() {
+            const cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+            const cartCountElement = document.querySelector('.cart-count');
+            
+            if (cartCountElement) {
+                if (cart.length > 0) {
+                    cartCountElement.innerText = cart.length;
+                    cartCountElement.classList.add('visible');
+                } else {
+                    cartCountElement.innerText = '';
+                    cartCountElement.classList.remove('visible');
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCountDisplay);
+    </script>
+</body>
+</html>

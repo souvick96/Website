@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer Shibaji - About</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --------------------------------- */
+        /* --- Global Styles & Variables --- */
+        /* --------------------------------- */
+        :root {
+            --color-beige: #f8f4e3;
+            --color-green: #2f4f4f;
+            --color-terracotta: #d26a44;
+            --color-white: #ffffff;
+            --color-dark-text: #333333;
+            
+            --font-heading: 'Tiro Bangla', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-beige);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-green); }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; }
+        section { padding: 60px 0; }
+        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s ease; }
+        a:hover { color: var(--color-green); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background-color: var(--color-terracotta); color: var(--color-white); }
+        .btn-primary:hover { background-color: #b85b3a; color: var(--color-white); transform: translateY(-2px); }
+
+        /* --------------------------------- */
+        /* --- 1.1 Navigation Bar --- */
+        /* --------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo-link {
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            line-height: 0;
+        }
+        .navbar .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .navbar .menu { list-style: none; display: flex; }
+        .navbar .menu li { margin-left: 30px; }
+        .navbar .menu a { color: var(--color-dark-text); font-weight: 500; font-size: 1rem; }
+        .navbar .menu a:hover, .navbar .menu a.active { color: var(--color-terracotta); }
+
+        /* --- CART ICON (NEW) --- */
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-dark-text);
+            text-decoration: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--color-terracotta);
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 4px 6px;
+            border-radius: 50%;
+            font-family: var(--font-body);
+            display: none;
+        }
+        .cart-count.visible { display: block; }
+        
+        /* --------------------------------- */
+        /* --- 5.1. Hero Banner --- */
+        /* --------------------------------- */
+        .about-hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            background: linear-gradient(rgba(47, 79, 79, 0.5), rgba(47, 79, 79, 0.5)), url(channels4_banner.jpg) no-repeat center center/cover;
+            text-align: center;
+        }
+        .about-hero h1 { font-size: 3.5rem; color: var(--color-white); }
+
+        /* --------------------------------- */
+        /* --- 5.2. Journey Story --- */
+        /* --------------------------------- */
+        .journey-story { background-color: var(--color-white); }
+        .journey-content { display: grid; grid-template-columns: 1fr; gap: 50px; }
+        .journey-text { font-size: 1.1rem; line-height: 1.8; max-width: 800px; margin: 0 auto 40px auto; }
+        .timeline { list-style: none; position: relative; max-width: 600px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 4px; background: var(--color-beige); }
+        .timeline-item { position: relative; margin-bottom: 30px; padding-left: 40px; }
+        .timeline-item::before { content: ''; position: absolute; left: 0; top: 4px; width: 20px; height: 20px; border-radius: 50%; background: var(--color-terracotta); border: 4px solid var(--color-white); z-index: 1; }
+        .timeline-item h3 { font-size: 1.8rem; color: var(--color-terracotta); margin-bottom: 5px; }
+        .timeline-item p { font-weight: 500; color: var(--color-dark-text); }
+
+        /* --------------------------------- */
+        /* --- 5.3. Mission & Vision --- */
+        /* --------------------------------- */
+        .mission-vision { background-color: var(--color-beige); text-align: center; }
+        .mission-content { max-width: 800px; margin: 0 auto; }
+        .mission-content h3 { font-size: 1.8rem; color: var(--color-green); }
+        .mission-content p { font-size: 1.25rem; font-style: italic; color: var(--color-dark-text); }
+
+        /* --------------------------------- */
+        /* --- 5.4. Media Mentions --- */
+        /* --------------------------------- */
+        .media-mentions { background-color: var(--color-white); text-align: center; }
+        .media-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px; }
+        .media-logos img { height: 170px; transition: all 0.3s ease; }
+        .media-logos img:hover { filter: grayscale(0%); opacity: 1; }
+
+        /* --------------------------------- */
+        /* --- 5.5. Call to Action --- */
+        /* --------------------------------- */
+        .about-cta { background-color: var(--color-terracotta); text-align: center; padding: 60px 20px; }
+        .about-cta h2 { color: var(--color-white); margin-bottom: 30px; }
+        .about-cta .btn { background: var(--color-white); color: var(--color-green); font-size: 1.1rem; }
+        .about-cta .btn:hover { background: var(--color-beige); color: var(--color-green); }
+
+        /* --------------------------------- */
+        /* --- 1.8 Footer (Copied) --- */
+        /* --------------------------------- */
+        footer { background-color: var(--color-green); color: var(--color-beige); padding: 60px 0 30px; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .footer-column h4 { color: var(--color-white); font-size: 1.3rem; margin-bottom: 20px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a, .footer-column p { color: var(--color-beige); opacity: 0.8; }
+        .footer-column a:hover { opacity: 1; color: var(--color-white); }
+        .social-icons { display: flex; }
+        .social-icons a { font-size: 1.5rem; margin-right: 20px; }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.2); opacity: 0.7; }
+        
+        /* --------------------------------- */
+        /* --- Responsive --- */
+        /* --------------------------------- */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 15px; }
+            .navbar .logo-link { margin-bottom: 15px; }
+            .navbar .menu { margin-top: 0; flex-wrap: wrap; justify-content: center; }
+            .navbar .menu li { margin: 5px 10px; }
+            .about-hero h1 { font-size: 2.5rem; }
+            .timeline::before { left: 10px; }
+            .timeline-item { padding-left: 40px; }
+            .timeline-item::before { left: 0; }
+            .footer-container { text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="1.png" alt="Explorer Shibaji Logo" class="logo-img">
+        </a>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <a href="checkout.html" class="cart-icon">
+            🛒
+            <span class="cart-count"></span>
+        </a>
+    </header>
+
+    <main>
+        <section class="about-hero">
+        </section>
+
+        <section class="journey-story">
+            <div class="container">
+                <h2>The Journey So Far</h2>
+                <div class="journey-content">
+                    <div class="journey-text">
+                        <p>It all started with a simple idea: to see what's beyond the next hill. Born in Bengal, the call of the mountains was always present. What began as weekend treks and borrowed cameras soon became a full-blown passion, a need to document not just the places, but the stories, the people, and the feelings of the road.</p>
+                        <p>Explorer Shibaji isn't just a person, it's a brand born from that passion. It's about capturing the soul of travel and turning it into something you can hold, wear, and share.</p>
+                    </div>
+                    
+                    <ul class="timeline">
+                        <li class="timeline-item">
+                            <h3>2015</h3>
+                            <p>First solo trek to Sandakphu. The journey that started it all.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <h3>2017</h3>
+                            <p>Started filming journeys. The "Explorer Shibaji" YouTube channel was born.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <h3>2020</h3>
+                            <p>Birth of the Explorer brand. Launched the first T-shirt design.</p>
+                        </li>
+                        <li class="timeline-item">
+                            <h3>2024</h3>
+                            <p>Reached 100k subscribers on YouTube and launched the first official store.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mission-vision">
+            <div class="container">
+                <div class="mission-content">
+                    <h3>Mission & Vision</h3>
+                    <p>"To turn travel into wearable art and inspire Bengalis to explore more."</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="media-mentions">
+            <div class="container">
+                <h2>As Seen In</h2>
+                <div class="media-logos">
+                    <img src="download (3).jpg" alt="Publication 1">
+                    <img src="download (2).jpg" alt="YouTube Milestone">
+                    <img src="images.jpg" alt="Travel Magazine">
+                    <img src="download (1).jpg" alt="Podcast Feature">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-cta">
+            <div class="container">
+                <h2>Join the Journey</h2>
+                <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbnB0allPcjZveF8zNzdLdF9JQ2k5cUh3ZzlZUXxBQ3Jtc0trY3RWR21JZGptNXk2UWc4SEhtUXpBZjVrNWZJcUI5V0M0TGpQS21LT083MXJVdlVmY3psQkUtS2YwUG1LODBHVXl6LXRPdEZnZ2xHV2dSSVowU1R1aFlIaXh0VzNnX1FUUE1xZWdNLXJXOG0zNk9BQQ&q=https%3A%2F%2Fwww.instagram.com%2Fexplorer_shibaji%2F" class="btn btn-primary">Follow @ExplorerShibaji</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="travel.html">Travel</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p>Email: explorershibaji@gmail.com</p>
+                    <p>Kolkata, West Bengal</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbnB0allPcjZveF8zNzdLdF9JQ2k5cUh3ZzlZUXxBQ3Jtc0trY3RWR21JZGptNXk2UWc4SEhtUXpBZjVrNWZJcUI5V0M0TGpQS21LT083MXJVdlVmY3psQkUtS2YwUG1LODBHVXl6LXRPdEZnZ2xHV2dSSVowU1R1aFlIaXh0VzNnX1FUUE1xZWdNLXJXOG0zNk9BQQ&q=https%3A%2F%2Fwww.instagram.com%2Fexplorer_shibaji%2F">Insta</a>
+                        <a href="http://www.youtube.com/@explorershibaji">YT</a>
+                        <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbF94Sm5kZXNCVko2V1A3TE5sa1laUzE4NThBUXxBQ3Jtc0ttUXJGUTRnYmhVU1RPNk5oQlBSU1piYlNFTmNLeHU2TG5GVFFsYjhTWlRaWDZOSHBfWHY5OTVNbnhyZ0tpdEpaaHVDeEE4d1ZvMmt2OTdNeFRUNURYWlNrUkp2enJoVTJUX051LUZWRzhSdHU3NWZFZw&q=https%3A%2F%2Fwww.facebook.com%2Fexplorershibaji">FB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © Explorer Shibaji 2025. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCartCountDisplay() {
+            const cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+            const cartCountElement = document.querySelector('.cart-count');
+            
+            if (cartCountElement) {
+                if (cart.length > 0) {
+                    cartCountElement.innerText = cart.length;
+                    cartCountElement.classList.add('visible');
+                } else {
+                    cartCountElement.innerText = '';
+                    cartCountElement.classList.remove('visible');
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCountDisplay);
+    </script>
+</body>
+</html>

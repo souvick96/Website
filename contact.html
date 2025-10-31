@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer Shibaji - Contact</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --------------------------------- */
+        /* --- Global Styles & Variables --- */
+        /* --------------------------------- */
+        :root {
+            --color-beige: #f8f4e3;
+            --color-green: #2f4f4f;
+            --color-terracotta: #d26a44;
+            --color-white: #ffffff;
+            --color-dark-text: #333333;
+            
+            --font-heading: 'Tiro Bangla', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-beige);
+            color: var(--color-dark-text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-green); }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; }
+        section { padding: 60px 0; }
+        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s ease; }
+        a:hover { color: var(--color-green); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background-color: var(--color-terracotta); color: var(--color-white); }
+        .btn-primary:hover { background-color: #b85b3a; color: var(--color-white); transform: translateY(-2px); }
+
+        /* --------------------------------- */
+        /* --- 1.1 Navigation Bar --- */
+        /* --------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: var(--color-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo-link {
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            line-height: 0;
+        }
+        .navbar .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .navbar .menu { list-style: none; display: flex; }
+        .navbar .menu li { margin-left: 30px; }
+        .navbar .menu a { color: var(--color-dark-text); font-weight: 500; font-size: 1rem; }
+        .navbar .menu a:hover, .navbar .menu a.active { color: var(--color-terracotta); }
+
+        /* --- CART ICON (NEW) --- */
+        .cart-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-dark-text);
+            text-decoration: none;
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--color-terracotta);
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+            padding: 4px 6px;
+            border-radius: 50%;
+            font-family: var(--font-body);
+            display: none;
+        }
+        .cart-count.visible { display: block; }
+        
+        /* --------------------------------- */
+        /* --- 6. Contact Section --- */
+        /* --------------------------------- */
+        .contact-section { background-color: var(--color-white); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+        .contact-container { display: grid; grid-template-columns: 2fr 1fr; min-height: 60vh; }
+        .contact-form-wrapper { padding: 50px; }
+        .contact-form-wrapper h3 { font-size: 2rem; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 5px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 1rem; }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .btn-primary.btn-full { width: 100%; font-size: 1.1rem; }
+        .contact-info-wrapper { background-color: var(--color-green); color: var(--color-white); padding: 50px; }
+        .contact-info-wrapper h3 { color: var(--color-white); font-size: 1.8rem; margin-bottom: 25px; }
+        .contact-info-wrapper p { font-size: 1.1rem; color: var(--color-beige); margin-bottom: 20px; }
+        .contact-details li { list-style: none; margin-bottom: 15px; font-size: 1.1rem; color: var(--color-beige); }
+        .contact-details li strong { color: var(--color-white); margin-right: 10px; }
+        .contact-details li a { color: var(--color-beige); }
+        .contact-details li a:hover { color: var(--color-terracotta); }
+
+        /* --------------------------------- */
+        /* --- 1.8 Footer (Copied) --- */
+        /* --------------------------------- */
+        footer { background-color: var(--color-green); color: var(--color-beige); padding: 60px 0 30px; margin-top: 60px; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .footer-column h4 { color: var(--color-white); font-size: 1.3rem; margin-bottom: 20px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a, .footer-column p { color: var(--color-beige); opacity: 0.8; }
+        .footer-column a:hover { opacity: 1; color: var(--color-white); }
+        .social-icons { display: flex; }
+        .social-icons a { font-size: 1.5rem; margin-right: 20px; }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.2); opacity: 0.7; }
+        
+        /* --------------------------------- */
+        /* --- Responsive --- */
+        /* --------------------------------- */
+        @media (max-width: 992px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .contact-info-wrapper { grid-row: 1; }
+        }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; padding: 15px; }
+            .navbar .logo-link { margin-bottom: 15px; }
+            .navbar .menu { margin-top: 0; flex-wrap: wrap; justify-content: center; }
+            .navbar .menu li { margin: 5px 10px; }
+            .contact-form-wrapper { padding: 30px; }
+            .contact-info-wrapper { padding: 30px; }
+            .footer-container { text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="1.png" alt="Explorer Shibaji Logo" class="logo-img">
+        </a>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="travel.html">Travel</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        <a href="checkout.html" class="cart-icon">
+            🛒
+            <span class="cart-count"></span>
+        </a>
+    </header>
+
+    <main>
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-form-wrapper">
+                        <h3>Send a Message</h3>
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info-wrapper">
+                        <h3>Let's Talk</h3>
+                        <p>Want to collaborate, feature or sell your art with us? We'd love to hear from you.</p>
+                        
+                        <h4 style="color: var(--color-white); margin-bottom: 15px;">Contact Details</h4>
+                        <ul class="contact-details">
+                            <li><strong>Email :-</strong> <a href="mailto:explorershibaji@gmail.com">explorershibaji@gmail.com</a></li>
+                            <li><strong>Instagram :-</strong> <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbnB0allPcjZveF8zNzdLdF9JQ2k5cUh3ZzlZUXxBQ3Jtc0trY3RWR21JZGptNXk2UWc4SEhtUXpBZjVrNWZJcUI5V0M0TGpQS21LT083MXJVdlVmY3psQkUtS2YwUG1LODBHVXl6LXRPdEZnZ2xHV2dSSVowU1R1aFlIaXh0VzNnX1FUUE1xZWdNLXJXOG0zNk9BQQ&q=https%3A%2F%2Fwww.instagram.com%2Fexplorer_shibaji%2F" target="_blank">explorer_shibaji</a></li>
+                            <li><strong>Facebook :-</strong> <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbF94Sm5kZXNCVko2V1A3TE5sa1laUzE4NThBUXxBQ3Jtc0ttUXJGUTRnYmhVU1RPNk5oQlBSU1piYlNFTmNLeHU2TG5GVFFsYjhTWlRaWDZOSHBfWHY5OTVNbnhyZ0tpdEpaaHVDeEE4d1ZvMmt2OTdNeFRUNURYWlNrUkp2enJoVTJUX051LUZWRzhSdHU3NWZFZw&q=https%3A%2F%2Fwww.facebook.com%2Fexplorershibaji">ExplorerShibaji</a></li>
+                            <li><strong>Base :-</strong>Kolkata, West Bengal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="travel.html">Travel</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <p>Email: explorershibaji@gmail.com</p>
+                    <p>Kolkata, West Bengal</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#">Insta</a>
+                        <a href="#">YT</a>
+                        <a href="#">FB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                Copyright © Explorer Shibaji 2025. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCartCountDisplay() {
+            const cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
+            const cartCountElement = document.querySelector('.cart-count');
+            
+            if (cartCountElement) {
+                if (cart.length > 0) {
+                    cartCountElement.innerText = cart.length;
+                    cartCountElement.classList.add('visible');
+                } else {
+                    cartCountElement.innerText = '';
+                    cartCountElement.classList.remove('visible');
+                }
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCountDisplay);
+    </script>
+</body>
+</html>
