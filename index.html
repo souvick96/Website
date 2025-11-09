@@ -5,237 +5,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explorer Shibaji - Home</title>
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --------------------------------- */
-        /* --- Global Styles & Variables --- */
-        /* --------------------------------- */
         :root {
             --color-beige: #f8f4e3;
             --color-green: #2f4f4f;
             --color-terracotta: #d26a44;
-            --color-white: #ffffff;
             --color-dark-text: #333333;
-            
-            --font-heading: 'Tiro Bangla', serif;
-            --font-body: 'Poppins', sans-serif;
+            --color-white: #ffffff;
+            --font-heading: 'Tiro Bangla', 'Lato', serif;
+            --font-body: 'Lato', 'Poppins', sans-serif;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
+            background: var(--color-beige);
+            color: var(--color-dark-text);
             font-family: var(--font-body);
-            background-color: var(--color-beige);
-            color: var(--color-dark-text);
-            line-height: 1.6;
+            line-height: 1.7;
         }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-green); }
-        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); letter-spacing: 1px;}
+        h2 { font-size: 2.5rem; margin-bottom: 36px; color: var(--color-green); text-align: center;}
         section { padding: 60px 0; }
-        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s ease; }
-        a:hover { color: var(--color-green); }
-
+        a { text-decoration: none; color: var(--color-terracotta); transition: color 0.3s;}
+        a:hover { color: var(--color-green);}
         .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            display: inline-block; padding: 13px 30px; border-radius: 50px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s;
+            outline: none; border: none;
         }
-        .btn-primary { background-color: var(--color-terracotta); color: var(--color-white); }
-        .btn-primary:hover { background-color: #b85b3a; color: var(--color-white); transform: translateY(-2px); }
-        .btn-secondary { background-color: transparent; color: var(--color-white); border: 2px solid var(--color-white); }
-        .btn-secondary:hover { background-color: var(--color-white); color: var(--color-green); }
-
-        /* --------------------------------- */
-        /* --- 1.1 Navigation Bar --- */
-        /* --------------------------------- */
+        .btn-primary { background: var(--color-terracotta); color: var(--color-white);}
+        .btn-primary:hover { background: #c15932; color: var(--color-white);}
+        .btn-secondary { background: var(--color-green); color: var(--color-white); border: 2px solid var(--color-green);}
+        .btn-secondary:hover { background: var(--color-white); color: var(--color-green);}
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
-            background-color: rgb(1, 232, 240);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--color-white); box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 18px 28px; position: sticky; top: 0; z-index: 999;
         }
-
         .navbar .logo-link {
-            background-color: #000000;
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-            line-height: 0;
+            background: var(--color-green); padding: 9px; border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(47,79,79,0.08); transition: background 0.3s;
         }
-        .navbar .logo-img {
-            height: 40px;
-            width: auto;
+        .navbar .logo-link:hover { background: var(--color-terracotta);}
+        .logo-img { height: 48px; width: auto; display: block;}
+        .menu { display: flex; gap: 0.8rem; list-style: none; }
+        .menu li { margin-left: 18px;}
+        .menu a {
+            color: var(--color-green); font-size: 1.08rem; padding: 6px 13px;
+            border-radius: 22px; transition: background 0.2s, color 0.3s;
         }
-
-        .navbar .menu { list-style: none; display: flex; }
-        .navbar .menu li { margin-left: 30px; }
-        .navbar .menu a { color: var(--color-dark-text); font-weight: 500; font-size: 1rem; }
-        .navbar .menu a:hover, .navbar .menu a.active { color: var(--color-terracotta); }
-
-        /* --- CART ICON --- */
+        .menu a.active, .menu a:hover { background: var(--color-beige); color: var(--color-terracotta);}
         .cart-icon {
-            position: relative;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--color-dark-text);
-            text-decoration: none;
+            position: relative; font-size: 1.5rem; cursor: pointer; color: var(--color-terracotta);
         }
         .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background-color: var(--color-terracotta);
-            color: var(--color-white);
-            font-size: 0.75rem;
-            font-weight: 700;
-            line-height: 1;
-            padding: 4px 6px;
-            border-radius: 50%;
-            font-family: var(--font-body);
-            display: none;
+            position: absolute; top: -6px; right: -12px;
+            background: var(--color-terracotta); color: var(--color-white);
+            padding: 4px 7px; border-radius: 50%; font-size: .76rem; font-weight: 700; display: none;
         }
         .cart-count.visible { display: block; }
 
-        /* --------------------------------- */
-        /* --- 1.2 Hero Section --- */
-        /* --------------------------------- */
         .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 90vh;
-            color: var(--color-white);
-            text-align: center;
-            background: linear-gradient(rgba(47, 79, 79, 0.6), rgba(47, 79, 79, 0.6)), url(https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg);
-            background-size: cover;
-            background-position: center;
-            padding: 0 20px;
+            background:
+                linear-gradient(to bottom right, rgba(255,255,255,0.12) 38%, rgba(47,79,79,0.40) 70%),
+                url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&w=1200');
+            background-size: cover; background-position: center;
+            min-height: 80vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            color: var(--color-green);
         }
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--color-terracotta);
+            text-shadow: 0 3px 30px rgba(47,79,79,0.07); margin-bottom: 32px;
+        }
+        .hero .cta-buttons { display: flex; gap: 13px; justify-content: center; margin-top: 18px; }
 
-.hero h1 { 
-    font-family: var(--font-heading); 
-    font-size: 3.5rem; 
-    color: #ff0303; /* <-- This line was changed */
-    margin-bottom: 30px; 
-}
-.hero .cta-buttons .btn { 
-    margin: 0 10px; 
-}
-
-        /* --------------------------------- */
-        /* --- 1.3 Featured Merchandise --- */
-        /* --------------------------------- */
-        .featured-merchandise { background-color: var(--color-white); }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: var(--color-white); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); overflow: hidden; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; height: 300px; object-fit: cover; }
-        .product-card-content { padding: 25px; }
-        .product-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .product-card .price { font-size: 1.2rem; font-weight: 700; color: var(--color-terracotta); margin-bottom: 20px; }
-
-        /* --------------------------------- */
-        /* --- 1.4 The Explorer's Story --- */
-        /* --------------------------------- */
-        .about-intro { background-color: var(--color-beige); }
-        .about-intro-content { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 50px; }
-        .about-intro-content img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .about-intro-text h2 { text-align: left; margin-bottom: 20px; }
-        .about-intro-text p { font-size: 1.1rem; margin-bottom: 30px; }
-
-        /* --------------------------------- */
-        /* --- 1.5 Travel Moments Gallery --- */
-        /* --------------------------------- */
-        .gallery { background-color: var(--color-white); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 250px); gap: 15px; }
-        .gallery-item { overflow: hidden; border-radius: 10px; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .gallery-item img:hover { transform: scale(1.1); }
-        .gallery-item:nth-child(1) { grid-column: 1 / 3; }
-        .gallery-item:nth-child(4) { grid-row: 2 / 3; grid-column: 2 / 4; }
-
-        /* --------------------------------- */
-        /* --- 1.6 Testimonials --- */
-        /* --------------------------------- */
-        .testimonial-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .testimonial-card { background: var(--color-white); padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.07); }
-        .testimonial-card img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid var(--color-terracotta); }
-        .testimonial-card p { font-style: italic; margin-bottom: 20px; }
-        .testimonial-card .name { font-weight: 700; color: var(--color-green); }
-
-        /* --------------------------------- */
-        /* --- 1.7 Newsletter Signup --- */
-        /* --------------------------------- */
-        .newsletter { background-color: var(--color-terracotta); color: var(--color-white); text-align: center; }
-        .newsletter h2 { color: var(--color-white); }
-        .newsletter p { font-size: 1.1rem; margin-bottom: 30px; }
-        .newsletter-form { display: flex; justify-content: center; max-width: 600px; margin: 0 auto; }
-        .newsletter-form input[type="email"] { flex-grow: 1; padding: 15px; border: none; border-radius: 50px 0 0 50px; font-family: var(--font-body); font-size: 1rem; }
-        .newsletter-form button { padding: 15px 30px; border: none; background: var(--color-green); color: var(--color-white); font-family: var(--font-body); font-weight: 500; font-size: 1rem; cursor: pointer; border-radius: 0 50px 50px 0; transition: background 0.3s ease; }
-        .newsletter-form button:hover { background: #1a3a3a; }
-
-        /* --------------------------------- */
-        /* --- 1.8 Footer --- */
-        /* --------------------------------- */
-        footer { background-color: var(--color-green); color: var(--color-beige); padding: 60px 0 30px; }
-        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .footer-column h4 { font-family: var(--font-heading); color: var(--color-white); font-size: 1.3rem; margin-bottom: 20px; }
-        .footer-column ul { list-style: none; }
-        .footer-column li { margin-bottom: 10px; }
-        .footer-column a, .footer-column p { color: var(--color-beige); opacity: 0.8; }
-        .footer-column a:hover { opacity: 1; color: var(--color-white); }
-        .social-icons { display: flex; }
-        .social-icons a { font-size: 1.5rem; margin-right: 20px; }
-        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: var(--color-beige); opacity: 0.7; }
+        .featured-merchandise { background: var(--color-white);}
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 28px;
+        }
+        .product-card {
+            background: var(--color-beige); border-radius: 14px; box-shadow: 0 5px 22px rgba(47,79,79,0.11);
+            overflow: hidden; text-align: center; transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .product-card:hover { transform: translateY(-7px) scale(1.02); box-shadow: 0 16px 38px rgba(210, 106, 68, 0.18);}
+        .product-card img { width: 100%; height: 220px; object-fit: cover;}
+        .product-card-content { padding: 21px;}
+        .product-card h3 { font-size: 1.32rem; margin-bottom: 8px;}
+        .product-card .price { font-size: 1.15rem; font-weight: 700; color: var(--color-terracotta); margin-bottom: 16px;}
         
-        /* --------------------------------- */
-        /* --- Responsive --- */
-        /* --------------------------------- */
+        .about-intro { background: linear-gradient(90deg,var(--color-beige) 63%,#e7e5ce 100%);}
+        .about-intro-content {
+            display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px;
+        }
+        .about-intro-content img {
+            width: 100%; max-width: 390px; border-radius: 16px; box-shadow: 0 12px 33px rgba(47, 79, 79, 0.12);
+            margin: 0 auto;
+        }
+        .about-intro-text h2 { margin-bottom: 14px; text-align: left;}
+        .about-intro-text p { font-size: 1.1rem; margin-bottom: 28px; color: var(--color-green);}
+
+        .gallery { background: var(--color-white);}
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 11px;
+        }
+        .gallery-item { overflow: hidden; border-radius: 9px; }
+        .gallery-item img {
+            width: 100%; height: 100%; max-height: 220px; object-fit: cover; transition: transform 0.42s;
+        }
+        .gallery-item img:hover { transform: scale(1.09);}
+        
+        .testimonial-container {
+            display: grid; grid-template-columns: repeat(auto-fit,minmax(290px,1fr)); gap: 25px;
+        }
+        .testimonial-card {
+            background: var(--color-beige); padding: 28px; border-radius: 17px; text-align: center;
+            box-shadow: 0 4px 18px rgba(47,79,79,0.09);
+        }
+        .testimonial-card img {
+            width: 82px; height: 82px; border-radius: 50%; object-fit: cover;
+            margin-bottom: 17px; border: 5px solid var(--color-terracotta);
+        }
+        .testimonial-card p { font-style: italic; margin-bottom: 17px; color: var(--color-green);}
+        .testimonial-card .name { font-weight: 700; color: var(--color-terracotta);}
+        
+        .newsletter {
+            background: linear-gradient(87deg, var(--color-terracotta) 93%, #ea7c4f 100%);
+            color: var(--color-white); text-align: center;
+        }
+        .newsletter h2 { color: var(--color-white);}
+        .newsletter p { font-size: 1.12rem; margin-bottom: 26px; color: #fbeee0;}
+        .newsletter-form {
+            display: flex; justify-content: center; max-width: 480px; margin: 0 auto;
+        }
+        .newsletter-form input[type="email"] {
+            flex-grow: 1; padding: 15px;
+            border: none; border-radius: 50px 0 0 50px; font-size: 1rem; font-family: var(--font-body);
+        }
+        .newsletter-form button {
+            padding: 15px 30px; background: var(--color-green); color: var(--color-white);
+            font-family: var(--font-body); font-weight: 700; font-size: 1rem; cursor: pointer;
+            border-radius: 0 50px 50px 0; transition: background .3s;
+        }
+        .newsletter-form button:hover { background: #234646;}
+
+        footer {
+            background: var(--color-green); color: var(--color-beige); padding: 50px 0 22px;
+        }
+        .footer-container {
+            display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 27px; margin-bottom: 34px;
+        }
+        .footer-column h4 { font-family: var(--font-heading); color: var(--color-white); font-size: 1.15rem; margin-bottom: 17px;}
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 7px; }
+        .footer-column a, .footer-column p { color: var(--color-beige); opacity: .75;}
+        .footer-column a:hover { opacity: 1; color: var(--color-white);}
+        .social-icons { display: flex; gap: 17px;}
+        .social-icons a { font-size: 1.4rem;}
+        .copyright { text-align: center; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.15); opacity: .64;}
+        
         @media (max-width: 992px) {
-            .about-intro-content { grid-template-columns: 1fr; }
-            .about-intro-content img { max-width: 500px; margin: 0 auto; display: block; }
-            .about-intro-text { text-align: center; }
-            .about-intro-text h2 { text-align: center; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-            .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: auto; grid-row: auto; }
+            .about-intro-content { grid-template-columns: 1fr; gap: 28px;}
+            .about-intro-content img { margin-bottom: 20px; max-width: 350px;}
+            .about-intro-text { text-align: center;}
+            .gallery-grid { grid-template-columns: repeat(2,1fr);}
         }
         @media (max-width: 768px) {
-            .navbar { flex-direction: column; padding: 15px; }
-            .navbar .logo-link { margin-bottom: 15px; } /* Mobile spacing for logo */
-            .navbar .menu { flex-wrap: wrap; justify-content: center; }
-            .navbar .menu li { margin: 5px 10px; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero .cta-buttons { display: flex; flex-direction: column; }
-            .hero .cta-buttons .btn { margin: 10px 0; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .footer-container { text-align: center; }
-            .social-icons { justify-content: center; }
+            .navbar { flex-direction: column; padding: 14px;}
+            .navbar .logo-link { margin-bottom: 14px;}
+            .menu { flex-wrap: wrap; justify-content: center;}
+            .menu li { margin-left: 10px;}
+            .hero h1 { font-size: 2.2rem;}
+            .hero .cta-buttons { flex-direction: column;}
+            .btn { margin: 8px 0;}
+            .gallery-grid { grid-template-columns: 1fr;}
+            .footer-container { text-align: center;}
+            .social-icons { justify-content: center;}
         }
     </style>
 </head>
 <body>
-
     <header class="navbar">
-        
         <a href="index.html" class="logo-link">
             <img src="1.png" alt="Explorer Shibaji Logo" class="logo-img">
         </a>
-        
         <ul class="menu">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="shop.html">Shop</a></li>
@@ -245,13 +205,11 @@
             <li><a href="login.html">Login</a></li>
         </ul>
         <a href="checkout.html" class="cart-icon">
-            🛒
-            <span class="cart-count"></span>
+            🛒 <span class="cart-count"></span>
         </a>
     </header>
 
     <main>
-
         <section class="hero" id="home">
             <h1>ভ্রমণ মানে অনুভবের গল্প — Explorer Shibaji</h1>
             <div class="cta-buttons">
@@ -298,7 +256,7 @@
                     <img src="WhatsApp Image 2025-10-28 at 23.00.09_38fa123a.jpg" alt="Explorer Shibaji on a trail">
                     <div class="about-intro-text">
                         <h2>The Explorer's Story</h2>
-                        <p>From Bengal’s hills to Himalayan trails — Shibaji’s lens captures stories that you can wear. We believe travel isn't just about places, it's about the feeling. And we've bottled that feeling into every product.</p>
+                        <p>From Bengal’s hills to Himalayan trails — Shibaji’s lens captures stories you can wear. Travel isn't just about places, it's about feeling. We've bottled that wanderlust into every product.</p>
                         <a href="about.html" class="btn btn-primary">Know More</a>
                     </div>
                 </div>
@@ -346,7 +304,7 @@
         <section class="newsletter">
             <div class="container">
                 <h2>Get Travel Tales & New Drops</h2>
-                <p>Join the Explorer family. Get travel stories & exclusive access to new merchandise drops right in your inbox.</p>
+                <p>Join the Explorer family. Get travel stories & exclusive access to new merchandise drops in your inbox.</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="Enter your email address" required>
                     <button type="submit">Subscribe</button>
@@ -392,7 +350,6 @@
         function updateCartCountDisplay() {
             const cart = JSON.parse(localStorage.getItem('explorerShibajiCart')) || [];
             const cartCountElement = document.querySelector('.cart-count');
-            
             if (cartCountElement) {
                 if (cart.length > 0) {
                     cartCountElement.innerText = cart.length;
